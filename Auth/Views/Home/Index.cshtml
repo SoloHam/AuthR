@@ -1,0 +1,20 @@
+<h1>Index</h1>
+
+@using Microsoft.AspNetCore.Identity
+@inject Microsoft.AspNetCore.Authorization.IAuthorizationService authService
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>User is authenticated</h1>
+    
+    @if ((await authService.AuthorizeAsync(User, null, "NaniPolicy")).Succeeded)
+    {
+        <h1>User complies to the Nani Policy</h1>
+        <h2>@User.Claims.First(x => x.Type == "i").Value</h2>
+    }
+    else
+    {
+        <h2>User DOES NOT complies to the Nani Policy</h2>
+    }
+}
+

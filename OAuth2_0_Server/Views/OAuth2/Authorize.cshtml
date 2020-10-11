@@ -1,0 +1,14 @@
+﻿@model string
+
+@{ 
+}
+
+<pre>
+
+@Model
+</pre>
+
+<form method="POST" action="@("/OAuth2/authorize" + Model)">
+    <input type="text" name="username" placeholder="Username" />
+    <input type="submit" value="Submit" />
+</form>
